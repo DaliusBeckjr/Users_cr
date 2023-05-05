@@ -33,7 +33,7 @@ class User:
 # just added this...now have to implement it with the following code... and add update class 
 # and delete class for the rest of the CRUD method but this is apart of the crud method: read
     @classmethod
-    def get_one(cls, user_id):
+    def get_one_user(cls, user_id):
         query  = "SELECT * FROM users WHERE id = %(id)s";
         data = {'id':user_id}
         results = connectToMySQL(cls.db).query_db(query, data)
