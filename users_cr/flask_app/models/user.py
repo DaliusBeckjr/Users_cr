@@ -28,15 +28,17 @@ class User:
             # need to pass in a dict to fill out info for data
             all_users.append(cls(user))
         return all_users
-   
+
 # the get_one method will be used when we need to retrieve just one specific row of the table.
-# just added this...now have to implement it with the following code... and add update class 
-# and delete class for the rest of the CRUD method but this is apart of the crud method: read
+# there are two ways to get one user just be consistent with the way you choose
     @classmethod
-    def get_one_user(cls, user_id):
-        query  = "SELECT * FROM users WHERE id = %(id)s";
-        data = {'id':user_id}
+    def get_one_user(cls, data):
+        query  = """
+            SELECT * FROM users 
+            WHERE id = %(id)s;
+        """
         results = connectToMySQL(cls.db).query_db(query, data)
+
         return cls(results[0])
     
 # crud method: create

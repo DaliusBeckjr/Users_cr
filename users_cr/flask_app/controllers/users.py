@@ -19,6 +19,17 @@ def users_dashboard():
     print(" ")
     return render_template('users_dashboard.html', all_users=users)
 
+
+@app.route('/users/show/<int:id>')
+def show_user(id):
+    # since this is the second way to do it we are putting the data 
+    # dictionary here
+    data={
+        'id': id # key of id being = to the id coming from the URL
+    }
+    return render_template('show_user.html', one_user=user.User.get_one_user(data))
+
+
 @app.route('/users/new')
 def new_user():
     return render_template('new_user.html')
